@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.domain.product;
+package br.devrafaelsoares.storeapirestful.domain.product.dto;
 
 public record ProductCreateRequest(
         String name,

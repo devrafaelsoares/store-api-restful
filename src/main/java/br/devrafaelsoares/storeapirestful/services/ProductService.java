@@ -2,8 +2,8 @@ package br.devrafaelsoares.storeapirestful.services;
 
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
-import br.devrafaelsoares.storeapirestful.domain.product.ProductCreateRequest;
-import br.devrafaelsoares.storeapirestful.domain.product.ProductUpdate;
+import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductCreateRequest;
+import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductUpdate;
 import br.devrafaelsoares.storeapirestful.repositories.ProductRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
