@@ -77,6 +77,15 @@ public class ProductService {
 
     }
 
+    public void delete(
+            UUID id
+    ) {
+
+        Product foundProduct = findById(id);
+
+        productRepository.delete(foundProduct);
+    }
+
     private void updateProductData(
             ProductUpdate productUpdateRequest,
             Product product
