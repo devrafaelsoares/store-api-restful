@@ -3,6 +3,7 @@ package br.devrafaelsoares.storeapirestful.services;
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
 import br.devrafaelsoares.storeapirestful.domain.product.ProductCreateRequest;
+import br.devrafaelsoares.storeapirestful.domain.product.ProductUpdate;
 import br.devrafaelsoares.storeapirestful.repositories.ProductRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -59,5 +60,37 @@ public class ProductService {
                     .category(category)
                     .price(productCreateRequest.price())
                 .build());
+    }
+
+    public Product update(
+            UUID id,
+            ProductUpdate productUpdateRequest
+    ) {
+
+        Product foundProduct = findById(id);
+
+        updateProductData(productUpdateRequest, foundProduct);
+
+        productRepository.save(foundProduct);
+
+        return foundProduct;
+
+    }
+
+    private void updateProductData(
+            ProductUpdate productUpdateRequest,
+            Product product
+    ) {
+
+        Category category = null;
+
+        if (productUpdateRequest.getCategory() != null) {
+            category = categoryService.findByName(productUpdateRequest.getCategory());
+        }
+
+        product.setName(productUpdateRequest.getName() != null ? productUpdateRequest.getName() : product.getName());
+        product.setDescription(productUpdateRequest.getDescription() != null ? productUpdateRequest.getDescription() : product.getDescription());
+        product.setCategory(productUpdateRequest.getCategory() != null ? category : product.getCategory());
+        product.setPrice(productUpdateRequest.getPrice() != null ? productUpdateRequest.getPrice() : product.getPrice());
     }
 }
