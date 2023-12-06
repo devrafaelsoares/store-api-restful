@@ -3,6 +3,7 @@ package br.devrafaelsoares.storeapirestful.services;
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
 import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryCreateRequest;
 import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryUpdate;
+import br.devrafaelsoares.storeapirestful.exceptions.ForeignKeyAssociationException;
 import br.devrafaelsoares.storeapirestful.repositories.CategoryRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -75,6 +76,19 @@ public class CategoryService {
 
         return foundCategory;
 
+    }
+
+    public void delete(
+            UUID id
+    ) {
+
+        Category foundCategory = findById(id);
+
+        if (!foundCategory.getProducts().isEmpty()) {
+            throw new ForeignKeyAssociationException("Existem produtos vinculados a essa categoria");
+        }
+
+        categoryRepository.delete(foundCategory);
     }
 
     private void updateCategoryData(CategoryUpdate categoryUpdateRequest, Category category) {
