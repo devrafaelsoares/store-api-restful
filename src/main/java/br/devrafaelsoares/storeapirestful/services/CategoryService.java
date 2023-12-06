@@ -2,6 +2,7 @@ package br.devrafaelsoares.storeapirestful.services;
 
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
 import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryCreateRequest;
+import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryUpdate;
 import br.devrafaelsoares.storeapirestful.repositories.CategoryRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -59,5 +60,24 @@ public class CategoryService {
                 .builder()
                     .name(categoryCreateRequest.name())
                 .build());
+    }
+
+    public Category update(
+            UUID id,
+            CategoryUpdate categoryUpdateRequest
+    ) {
+
+        Category foundCategory = findById(id);
+
+        updateCategoryData(categoryUpdateRequest, foundCategory);
+
+        categoryRepository.save(foundCategory);
+
+        return foundCategory;
+
+    }
+
+    private void updateCategoryData(CategoryUpdate categoryUpdateRequest, Category category) {
+        category.setName(categoryUpdateRequest.getName() != null ? categoryUpdateRequest.getName() : category.getName());
     }
 }
