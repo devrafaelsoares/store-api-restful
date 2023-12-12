@@ -7,6 +7,7 @@ import br.devrafaelsoares.storeapirestful.exceptions.ForeignKeyAssociationExcept
 import br.devrafaelsoares.storeapirestful.repositories.CategoryRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class CategoryService {
     }
 
     public Category findById(
-           UUID id
+            @NotNull UUID id
     ) {
 
         return categoryRepository
@@ -33,7 +34,7 @@ public class CategoryService {
     }
 
     public Category findByName(
-           String name
+            @NotNull String name
     ) {
 
         return categoryRepository
@@ -42,7 +43,7 @@ public class CategoryService {
     }
 
     private boolean isExistsCategoryByName(
-            String name
+            @NotNull String name
     ) {
         return categoryRepository
                 .findByName(name)
@@ -50,7 +51,7 @@ public class CategoryService {
     }
 
     public Category save(
-            CategoryCreateRequest categoryCreateRequest
+            @NotNull CategoryCreateRequest categoryCreateRequest
     ) {
 
         if (isExistsCategoryByName(categoryCreateRequest.name())) {
@@ -64,8 +65,8 @@ public class CategoryService {
     }
 
     public Category update(
-            UUID id,
-            CategoryUpdate categoryUpdateRequest
+            @NotNull UUID id,
+            @NotNull CategoryUpdate categoryUpdateRequest
     ) {
 
         Category foundCategory = findById(id);
@@ -79,7 +80,7 @@ public class CategoryService {
     }
 
     public void delete(
-            UUID id
+            @NotNull UUID id
     ) {
 
         Category foundCategory = findById(id);
@@ -91,7 +92,10 @@ public class CategoryService {
         categoryRepository.delete(foundCategory);
     }
 
-    private void updateCategoryData(CategoryUpdate categoryUpdateRequest, Category category) {
+    private void updateCategoryData(
+            @NotNull CategoryUpdate categoryUpdateRequest,
+            @NotNull Category category
+    ) {
         category.setName(categoryUpdateRequest.getName() != null ? categoryUpdateRequest.getName() : category.getName());
     }
 }

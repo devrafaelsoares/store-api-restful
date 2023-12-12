@@ -7,6 +7,7 @@ import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductUpdate;
 import br.devrafaelsoares.storeapirestful.repositories.ProductRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class ProductService {
     }
 
     public Product findById(
-            UUID id
+            @NotNull UUID id
     ) {
 
         return productRepository
@@ -36,7 +37,7 @@ public class ProductService {
     }
 
     private boolean isExistsProductByName(
-            String name
+            @NotNull String name
     ) {
         return productRepository
                 .findByName(name)
@@ -44,7 +45,7 @@ public class ProductService {
     }
 
     public Product save(
-            ProductCreateRequest productCreateRequest
+            @NotNull ProductCreateRequest productCreateRequest
     ) {
 
         if (isExistsProductByName(productCreateRequest.name())) {
@@ -63,8 +64,8 @@ public class ProductService {
     }
 
     public Product update(
-            UUID id,
-            ProductUpdate productUpdateRequest
+            @NotNull UUID id,
+            @NotNull ProductUpdate productUpdateRequest
     ) {
 
         Product foundProduct = findById(id);
@@ -78,7 +79,7 @@ public class ProductService {
     }
 
     public void delete(
-            UUID id
+            @NotNull UUID id
     ) {
 
         Product foundProduct = findById(id);
@@ -87,8 +88,8 @@ public class ProductService {
     }
 
     private void updateProductData(
-            ProductUpdate productUpdateRequest,
-            Product product
+            @NotNull ProductUpdate productUpdateRequest,
+            @NotNull Product product
     ) {
 
         Category category = null;
