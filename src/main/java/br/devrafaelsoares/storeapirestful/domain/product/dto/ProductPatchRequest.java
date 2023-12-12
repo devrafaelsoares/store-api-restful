@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.domain.product;
+package br.devrafaelsoares.storeapirestful.domain.product.dto;
 
 import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductUpdate;
 import br.devrafaelsoares.storeapirestful.domain.validations.constraints.Categories;

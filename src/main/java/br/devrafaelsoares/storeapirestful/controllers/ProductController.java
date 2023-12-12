@@ -2,7 +2,9 @@ package br.devrafaelsoares.storeapirestful.controllers;
 
 import br.devrafaelsoares.storeapirestful.domain.product.*;
 import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductCreateRequest;
+import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductPatchRequest;
 import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductResponse;
+import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductUpdateRequest;
 import br.devrafaelsoares.storeapirestful.services.ProductService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
