@@ -1,7 +1,11 @@
 package br.devrafaelsoares.storeapirestful.controllers;
 
 import br.devrafaelsoares.storeapirestful.domain.product.*;
+import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductCreateRequest;
+import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductResponse;
 import br.devrafaelsoares.storeapirestful.services.ProductService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +36,7 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public ResponseEntity<ProductResponse> show(
-            @PathVariable UUID id
+            @PathVariable @NotNull UUID id
     ) {
 
         Product foundProduct = productService.findById(id);
@@ -44,7 +48,7 @@ public class ProductController {
 
     @PostMapping("/product")
     public ResponseEntity<ProductResponse> store(
-            @RequestBody ProductCreateRequest productRequest
+            @RequestBody @Valid ProductCreateRequest productRequest
     ) {
 
         Product savedProduct = productService.save(productRequest);
@@ -63,8 +67,8 @@ public class ProductController {
 
     @PutMapping("/product/{id}")
     public ResponseEntity<ProductResponse> update(
-            @PathVariable UUID id,
-            @RequestBody ProductUpdateRequest productRequest
+            @PathVariable @NotNull UUID id,
+            @RequestBody @Valid ProductUpdateRequest productRequest
     ) {
 
         ProductResponse productResponse = new ProductResponse(productService.update(id, productRequest));
@@ -74,8 +78,8 @@ public class ProductController {
 
     @PatchMapping("/product/{id}")
     public ResponseEntity<ProductResponse> update(
-            @PathVariable UUID id,
-            @RequestBody ProductPatchRequest productRequest
+            @PathVariable @NotNull UUID id,
+            @RequestBody @Valid ProductPatchRequest productRequest
     ) {
 
         ProductResponse productResponse = new ProductResponse(productService.update(id, productRequest));
@@ -85,7 +89,7 @@ public class ProductController {
 
     @DeleteMapping("/product/{id}")
     public ResponseEntity<Void> delete(
-            @PathVariable UUID id
+            @PathVariable @NotNull UUID id
     ) {
 
         productService.delete(id);

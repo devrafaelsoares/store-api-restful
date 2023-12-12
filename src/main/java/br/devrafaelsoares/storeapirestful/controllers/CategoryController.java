@@ -6,6 +6,8 @@ import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryPatchReque
 import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryResponse;
 import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryUpdateRequest;
 import br.devrafaelsoares.storeapirestful.services.CategoryService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +38,7 @@ public class CategoryController {
 
     @GetMapping("/category/{id}")
     public ResponseEntity<CategoryResponse> show(
-            @PathVariable UUID id
+            @PathVariable @NotNull UUID id
     ) {
 
         Category foundCategory = categoryService.findById(id);
@@ -48,7 +50,7 @@ public class CategoryController {
 
     @PostMapping("/category")
     public ResponseEntity<CategoryResponse> store(
-            @RequestBody CategoryCreateRequest categoryRequest
+            @RequestBody @Valid CategoryCreateRequest categoryRequest
     ) {
 
         Category categorySaved = categoryService.save(categoryRequest);
@@ -67,8 +69,8 @@ public class CategoryController {
 
     @PutMapping("/category/{id}")
     public ResponseEntity<CategoryResponse> update(
-            @PathVariable UUID id,
-            @RequestBody CategoryUpdateRequest categoryRequest
+            @PathVariable @NotNull UUID id,
+            @RequestBody @Valid CategoryUpdateRequest categoryRequest
     ) {
 
         CategoryResponse categoryResponse = new CategoryResponse(categoryService.update(id, categoryRequest));
@@ -78,8 +80,8 @@ public class CategoryController {
 
     @PatchMapping("/category/{id}")
     public ResponseEntity<CategoryResponse> update(
-            @PathVariable UUID id,
-            @RequestBody CategoryPatchRequest categoryRequest
+            @PathVariable @NotNull UUID id,
+            @RequestBody @Valid CategoryPatchRequest categoryRequest
     ) {
 
         CategoryResponse categoryResponse = new CategoryResponse(categoryService.update(id, categoryRequest));
@@ -89,7 +91,7 @@ public class CategoryController {
 
     @DeleteMapping("/category/{id}")
     public ResponseEntity<Void> delete(
-            @PathVariable UUID id
+            @PathVariable @NotNull UUID id
     ) {
 
         categoryService.delete(id);
