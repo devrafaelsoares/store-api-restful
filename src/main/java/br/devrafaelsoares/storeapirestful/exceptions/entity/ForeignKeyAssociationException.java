@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.exceptions;
+package br.devrafaelsoares.storeapirestful.exceptions.entity;
 
 public class ForeignKeyAssociationException extends RuntimeException {
 
