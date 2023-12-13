@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.exceptions.auth;
+package br.devrafaelsoares.storeapirestful.exceptions.authentication;
 
 public class UserNotFoundException extends RuntimeException{
 
