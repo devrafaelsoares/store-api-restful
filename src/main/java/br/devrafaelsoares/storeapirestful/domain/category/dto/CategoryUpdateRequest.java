@@ -4,9 +4,9 @@ import br.devrafaelsoares.storeapirestful.domain.validations.constraints.NotBlan
 import lombok.Getter;
 
 @Getter
-public record CategoryUpdateRequest (
+public class CategoryUpdateRequest implements CategoryUpdate {
+
         @NotBlankOrNull(message = "Campo obrigatório")
-        String name
-) implements CategoryUpdate
-{}
+        private String name;
+}
 
