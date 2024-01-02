@@ -9,6 +9,9 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,7 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Cacheable(value = "category", key = "#id")
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
@@ -50,6 +54,7 @@ public class CategoryService {
                 .isPresent();
     }
 
+    @CacheEvict(value = "category", allEntries = true)
     public Category save(
             @NotNull CategoryCreateRequest categoryCreateRequest
     ) {
@@ -64,6 +69,7 @@ public class CategoryService {
                 .build());
     }
 
+    @CachePut(value = "categories", key = "#id")
     public Category update(
             @NotNull UUID id,
             @NotNull CategoryUpdate categoryUpdateRequest
@@ -79,6 +85,7 @@ public class CategoryService {
 
     }
 
+    @CacheEvict(value = "categories", key = "#id")
     public void delete(
             @NotNull UUID id
     ) {

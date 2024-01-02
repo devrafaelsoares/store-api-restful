@@ -9,6 +9,9 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,10 +26,12 @@ public class ProductService {
     @Autowired
     private CategoryService categoryService;
 
+    @Cacheable(value = "products")
     public List<Product> findAll() {
         return productRepository.findAll();
     }
 
+    @Cacheable(value = "product", key = "#id")
     public Product findById(
             @NotNull UUID id
     ) {
@@ -44,6 +49,7 @@ public class ProductService {
                 .isPresent();
     }
 
+    @CacheEvict(value = "product", allEntries = true)
     public Product save(
             @NotNull ProductCreateRequest productCreateRequest
     ) {
@@ -63,6 +69,7 @@ public class ProductService {
                 .build());
     }
 
+    @CachePut(value = "products", key = "#id")
     public Product update(
             @NotNull UUID id,
             @NotNull ProductUpdate productUpdateRequest
@@ -77,6 +84,8 @@ public class ProductService {
         return foundProduct;
 
     }
+
+    @CacheEvict(value = "products", key = "#id")
 
     public void delete(
             @NotNull UUID id
