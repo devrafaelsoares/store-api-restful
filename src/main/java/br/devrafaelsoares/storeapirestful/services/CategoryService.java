@@ -3,7 +3,7 @@ package br.devrafaelsoares.storeapirestful.services;
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
 import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryCreateRequest;
 import br.devrafaelsoares.storeapirestful.domain.category.dto.CategoryUpdate;
-import br.devrafaelsoares.storeapirestful.exceptions.entity.ForeignKeyAssociationException;
+import br.devrafaelsoares.storeapirestful.exceptions.ForeignKeyAssociationException;
 import br.devrafaelsoares.storeapirestful.repositories.CategoryRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,11 +23,12 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @Cacheable(value = "category", key = "#id")
+    @Cacheable(value = "categories")
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
+    @Cacheable(value = "category", key = "#id")
     public Category findById(
             @NotNull UUID id
     ) {
@@ -54,7 +55,7 @@ public class CategoryService {
                 .isPresent();
     }
 
-    @CacheEvict(value = "category", allEntries = true)
+    @CacheEvict(value = "categories", allEntries = true)
     public Category save(
             @NotNull CategoryCreateRequest categoryCreateRequest
     ) {

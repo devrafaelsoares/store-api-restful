@@ -49,7 +49,7 @@ public class ProductService {
                 .isPresent();
     }
 
-    @CacheEvict(value = "product", allEntries = true)
+    @CacheEvict(value = "products", allEntries = true)
     public Product save(
             @NotNull ProductCreateRequest productCreateRequest
     ) {
