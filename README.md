@@ -20,17 +20,38 @@
 
 ### 📝  Pré requisitos: 
 
-* #### 🎲 Banco de dados
+* #### ⚙️ Variáveis de ambiente 
 
-Será necessário a realizar configuração do usuário e senha do cliente PostgreSQL.
+Será necessário a realizar configuração das variáveis de ambiente da aplicação no arquivo **.env.example**
 
-````yaml
-spring:
-  datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/store-api
-    username: # Database user
-    password: # Database password user
-    driver-class-name: org.postgresql.Driver
+````dotenv
+APPLICATION_NAME=store-api
+
+DATABASE_HOST=database
+DATABASE_PORT=5432
+DATABASE_NAME= # Enter the postgres database name
+DATABASE_USERNAME= # Enter the postgres user name
+DATABASE_PASSWORD= # Enter the postgres user password
+DATABASE_URL=jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+
+APPLICATION_SECURITY_USER= # Enter the application user name
+APPLICATION_SECURITY_PASSWORD= # Enter the application user password
+
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_EXPIRATION=15
+
+JWT_SECRET= # Enter jwt secret
+JWT_EXPIRATION=15
+````
+
+⚠️ **Será necessário renomear o arquivo .env.example para .env.**
+
+* ### 🐋 Iniciando os contâiners
+  
+Para inicializar a aplicação será necessário executar o seguinte comando no diretório da aplicação:
+````shell
+docker-composer up -d
 ````
 
 ---
