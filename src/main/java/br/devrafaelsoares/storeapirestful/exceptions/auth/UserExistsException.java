@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.exceptions.authentication;
+package br.devrafaelsoares.storeapirestful.exceptions.auth;
 
 import org.springframework.security.core.AuthenticationException;
 

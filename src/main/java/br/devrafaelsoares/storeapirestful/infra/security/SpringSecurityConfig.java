@@ -1,5 +1,6 @@
 package br.devrafaelsoares.storeapirestful.infra.security;
 
+import br.devrafaelsoares.storeapirestful.exceptions.authentication.CustomAuthenticationEntryPoint;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -61,8 +62,10 @@ public class SpringSecurityConfig {
                             .authenticated()
 
                 )
-                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                    .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(httpSecurity ->
+                        httpSecurity.authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
+                .authenticationProvider(authenticationProvider)
                 .build();
     }
 }
