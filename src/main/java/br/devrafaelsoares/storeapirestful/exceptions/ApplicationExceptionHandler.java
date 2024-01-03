@@ -1,9 +1,9 @@
 package br.devrafaelsoares.storeapirestful.exceptions;
 
-import br.soares.api.springsecurity.exceptions.auth.UserExistsException;
-import br.soares.api.springsecurity.exceptions.auth.UserNotFoundException;
-import br.soares.api.springsecurity.exceptions.product.FieldValidationStructureException;
-import br.soares.api.springsecurity.exceptions.product.ValidationStructureException;
+import br.devrafaelsoares.storeapirestful.exceptions.auth.UserExistsException;
+import br.devrafaelsoares.storeapirestful.exceptions.auth.UserNotFoundException;
+import br.devrafaelsoares.storeapirestful.exceptions.product.FieldValidationStructureException;
+import br.devrafaelsoares.storeapirestful.exceptions.product.ValidationStructureException;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;

@@ -6,8 +6,8 @@ import br.devrafaelsoares.storeapirestful.domain.authentication.dto.RegisterResp
 import br.devrafaelsoares.storeapirestful.domain.authentication.dto.RegisterRequest;
 import br.devrafaelsoares.storeapirestful.domain.user.Role;
 import br.devrafaelsoares.storeapirestful.domain.user.User;
-import br.devrafaelsoares.storeapirestful.exceptions.authentication.UserExistsException;
-import br.devrafaelsoares.storeapirestful.exceptions.authentication.UserNotFoundException;
+import br.devrafaelsoares.storeapirestful.exceptions.auth.UserExistsException;
+import br.devrafaelsoares.storeapirestful.exceptions.auth.UserNotFoundException;
 import br.devrafaelsoares.storeapirestful.repositories.UserRepository;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package br.devrafaelsoares.storeapirestful.infra.security;
 
-import br.devrafaelsoares.storeapirestful.exceptions.authentication.CustomAuthenticationEntryPoint;
+import br.devrafaelsoares.storeapirestful.exceptions.auth.CustomAuthenticationEntryPoint;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
