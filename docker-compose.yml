@@ -1,0 +1,63 @@
+version: "3.8"
+services:
+  app:
+    container_name: store-api
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - APPLICATION_NAME=${APPLICATION_NAME}
+      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - APPLICATION_SECURITY_USER=${APPLICATION_SECURITY_USER}
+      - APPLICATION_SECURITY_PASSWORD=${APPLICATION_SECURITY_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_EXPIRATION=${REDIS_EXPIRATION}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    depends_on:
+      - database
+      - redis
+    links:
+      - redis
+    restart: always
+    volumes:
+      - app:/usr/app
+    networks:
+      - store-api-network
+
+  database:
+    container_name: store-api-database
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - database:/usr/app/postgresql
+    networks:
+      - store-api-network
+
+  redis:
+    container_name: store-api-redis
+    image: redis:7.2
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/usr/app/redis
+    networks:
+      - store-api-network
+
+networks:
+  store-api-network:
+    driver: bridge
+
+volumes:
+  app:
+  database:
+  redis:
