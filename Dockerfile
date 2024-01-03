@@ -1,8 +1,14 @@
-FROM openjdk:21-slim
+FROM maven:3-openjdk-17 as maven
 
 WORKDIR /app
 
-COPY dist/store-api-restful-1.0.0.jar store-api.jar
+COPY . .
+
+RUN mvn package -Dmaven.test.skip
+
+FROM openjdk:17
+
+COPY --from=maven /app/target/store-api-restful-1.0.0.jar store-api.jar
 
 EXPOSE 8080
 
