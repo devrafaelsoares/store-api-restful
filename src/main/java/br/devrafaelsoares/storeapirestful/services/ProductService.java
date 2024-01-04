@@ -69,7 +69,7 @@ public class ProductService {
                 .build());
     }
 
-    @CachePut(value = "products", key = "#id")
+    @CacheEvict(value = "products", key = "#id", allEntries = true)
     public Product update(
             @NotNull UUID id,
             @NotNull ProductUpdate productUpdateRequest
