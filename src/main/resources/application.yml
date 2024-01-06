@@ -8,6 +8,8 @@ spring:
 
       username: ${APPLICATION_SECURITY_USER}
       password: ${APPLICATION_SECURITY_PASSWORD}
+  mvc:
+    static-path-pattern: classpath:/static/**
   redis:
     expiration: ${REDIS_EXPIRATION}
   profiles:
