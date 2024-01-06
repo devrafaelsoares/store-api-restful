@@ -1,0 +1,8 @@
+package br.devrafaelsoares.storeapirestful.repositories;
+
+import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface ImageRepository extends JpaRepository<Image, UUID> {}
