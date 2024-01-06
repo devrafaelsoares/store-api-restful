@@ -1,6 +1,7 @@
 package br.devrafaelsoares.storeapirestful.services;
 
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
+import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
 import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductCreateRequest;
 import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductUpdate;
@@ -10,7 +11,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -86,7 +86,6 @@ public class ProductService {
     }
 
     @CacheEvict(value = "products", key = "#id")
-
     public void delete(
             @NotNull UUID id
     ) {
@@ -95,6 +94,18 @@ public class ProductService {
 
         productRepository.delete(foundProduct);
     }
+
+    @CacheEvict(value = {"products", "product"}, allEntries = true)
+    public void updateImage(
+            @NotNull Product product,
+            @NotNull Image image
+            ) {
+
+        product.setImage(image);
+        productRepository.save(product);
+
+    }
+
 
     private void updateProductData(
             @NotNull ProductUpdate productUpdateRequest,
