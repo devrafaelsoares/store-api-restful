@@ -59,7 +59,14 @@ public class SpringSecurityConfig {
                             .hasAnyRole(ADMIN.name(), SELLER.name())
 
                         .requestMatchers(HttpMethod.GET, "/products/image/**")
-                            .hasRole(ADMIN.name())
+                            .hasAnyRole(ADMIN.name(), SELLER.name(), CLIENT.name())
+                        .requestMatchers(HttpMethod.POST, "/products/image/**")
+                            .hasAnyRole(ADMIN.name(), SELLER.name())
+                        .requestMatchers(HttpMethod.PUT, "/products/image/**")
+                            .hasAnyRole(ADMIN.name(), SELLER.name())
+                        .requestMatchers(HttpMethod.DELETE, "/products/image/**")
+                            .hasAnyRole(ADMIN.name(), SELLER.name())
+
                         .anyRequest()
                             .permitAll()
 
