@@ -13,6 +13,7 @@
     * [Autenticação](#-autenticação)
     * [Produto](#-produto)
     * [Categoria](#-categoria)
+    * [Imagem](#-imagem)
 * [Como usar?](#como-usar-)
 * [Contatos](#-contatos)
 
@@ -52,6 +53,12 @@ JWT_EXPIRATION=15
 Para inicializar a aplicação será necessário executar o seguinte comando no diretório da aplicação:
 ````shell
 docker-composer up -d
+````
+
+ou
+
+````shell
+docker compose up
 ````
 
 ---
@@ -153,6 +160,41 @@ docker-composer up -d
 > 📨 **Método:** ```PATCH```
 >
 > 🔒 **Permissões permitidas:** ``ADMIN``
+
+---
+
+## 📷 Imagem
+
+> #### Lista imagem do produto
+> 📍 **Endpoint:** http://localhost:8080/api/v1/product/{id}/image
+>
+> 📨 **Método:** ```GET```
+>
+> 🔒 **Permissões permitidas:** ``ADMIN`` ``SELLER`` ``CLIENT``
+
+---
+> #### Cadastrar imagem do produto
+> 📍 **Endpoint:** http://localhost:8080/api/v1/product/{id}/image
+>
+> 📨 **Método:** ```POST```
+>
+> 🔒 **Permissões permitidas:** ``ADMIN`` ``SELLER``
+
+---
+> #### Atualizar imagem do produto 
+> 📍 **Endpoint:** http://localhost:8080/api/v1/product/{id}/image
+>
+> 📨 **Método:** ```PUT```
+>
+> 🔒 **Permissões permitidas:** ``ADMIN`` ``SELLER``
+
+---
+> #### Deletar a imagem do produto
+> 📍 **Endpoint:** http://localhost:8080/api/v1/product/{id}/image
+>
+> 📨 **Método:** ```DELETE```
+>
+> 🔒 **Permissões permitidas:** ``ADMIN`` ``SELLER``
 
 ---
 
