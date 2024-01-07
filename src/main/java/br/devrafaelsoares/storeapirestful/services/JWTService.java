@@ -75,10 +75,10 @@ public class JWTService {
     ) {
         return JWT
                 .create()
-                .withSubject(user.getUsername())
-                .withClaim("role", user.getRole().name())
-                .withIssuedAt(Instant.from(LocalDateTime.now().atZone(ZoneId.systemDefault())))
-                .withExpiresAt(Instant.from(LocalDateTime.now().plusMinutes(expirationMinutes).atZone(ZoneId.systemDefault())))
+                    .withSubject(user.getUsername())
+                    .withClaim("role", user.getRole().name())
+                    .withIssuedAt(Instant.from(LocalDateTime.now().atZone(ZoneId.systemDefault())))
+                    .withExpiresAt(Instant.from(LocalDateTime.now().plusMinutes(expirationMinutes).atZone(ZoneId.systemDefault())))
                 .sign(Algorithm.HMAC256(secretKey));
     }
 

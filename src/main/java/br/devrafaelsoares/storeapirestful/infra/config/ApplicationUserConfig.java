@@ -29,9 +29,9 @@ public class ApplicationUserConfig implements CommandLineRunner {
 
             User userAdmin = User
                     .builder()
-                    .username(username)
-                    .password(new BCryptPasswordEncoder().encode(password))
-                    .role(ADMIN)
+                        .username(username)
+                        .password(new BCryptPasswordEncoder().encode(password))
+                        .role(ADMIN)
                     .build();
 
             userRepository.save(userAdmin);

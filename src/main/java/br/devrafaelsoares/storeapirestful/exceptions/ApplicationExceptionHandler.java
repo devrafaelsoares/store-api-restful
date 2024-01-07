@@ -39,11 +39,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.UNAUTHORIZED.value())
-                    .error("Usuário ou senha inválidos")
-                    .message("Usuário ou senha informados são inválidos")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .error("Usuário ou senha inválidos")
+                        .message("Usuário ou senha informados são inválidos")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(structureException);
@@ -56,11 +56,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.CONFLICT.value())
-                    .error("Usuário já cadastrado")
-                    .message("Usuário já se encontra cadastrado no sistema")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.CONFLICT.value())
+                        .error("Usuário já cadastrado")
+                        .message("Usuário já se encontra cadastrado no sistema")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.CONFLICT).body(structureException);
@@ -73,11 +73,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.UNAUTHORIZED.value())
-                    .error("Usuário ou senha inválidos")
-                    .message("Usuário ou senha informados são inválidos")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .error("Usuário ou senha inválidos")
+                        .message("Usuário ou senha informados são inválidos")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(structureException);
@@ -90,11 +90,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.UNAUTHORIZED.value())
-                    .error("Token expirado ou inválido")
-                    .message("O token informado está expirado ou inválido")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .error("Token expirado ou inválido")
+                        .message("O token informado está expirado ou inválido")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(structureException);
@@ -107,11 +107,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.FORBIDDEN.value())
-                    .error("Acesso negado")
-                    .message("Você não possui autorização prévia para acessar esse recurso")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.FORBIDDEN.value())
+                        .error("Acesso negado")
+                        .message("Você não possui autorização prévia para acessar esse recurso")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(structureException);
@@ -124,11 +124,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.UNAUTHORIZED.value())
-                    .error("Token expirado ou inválido")
-                    .message("O token informado está expirado ou inválido")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .error("Token expirado ou inválido")
+                        .message("O token informado está expirado ou inválido")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(structureException);
@@ -141,11 +141,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.UNAUTHORIZED.value())
-                    .error("Token expirado ou inválido")
-                    .message("O token informado está expirado ou inválido")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .error("Token expirado ou inválido")
+                        .message("O token informado está expirado ou inválido")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(structureException);
@@ -158,11 +158,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.UNAUTHORIZED.value())
-                    .error("Token expirado ou inválido")
-                    .message("O token informado está expirado ou inválido")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .error("Token expirado ou inválido")
+                        .message("O token informado está expirado ou inválido")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(structureException);
@@ -175,11 +175,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.BAD_REQUEST.value())
-                    .error("Erro de integridade")
-                    .message("Ocorreu um erro no processo de registro da entidade")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .error("Erro de integridade")
+                        .message("Ocorreu um erro no processo de registro da entidade")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(structureException);
@@ -192,11 +192,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.NOT_FOUND.value())
-                    .error("Recurso não encontrado")
-                    .message("Não foi possível encontrar o recurso solicitado")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.NOT_FOUND.value())
+                        .error("Recurso não encontrado")
+                        .message("Não foi possível encontrar o recurso solicitado")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(structureException);
@@ -209,11 +209,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                    .error("Erro no processamento da solicitação")
-                    .message("Não foi possível processar a solicitação")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                        .error("Erro no processamento da solicitação")
+                        .message("Não foi possível processar a solicitação")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(structureException);
@@ -226,11 +226,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.CONFLICT.value())
-                    .error("Entidade já existe")
-                    .message(exception.getMessage())
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.CONFLICT.value())
+                        .error("Entidade já existe")
+                        .message(exception.getMessage())
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.CONFLICT).body(structureException);
@@ -243,11 +243,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.NOT_FOUND.value())
-                    .error("Entidade não existe")
-                    .message(exception.getMessage())
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.NOT_FOUND.value())
+                        .error("Entidade não existe")
+                        .message(exception.getMessage())
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(structureException);
@@ -260,11 +260,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.UNPROCESSABLE_ENTITY.value())
-                    .error("Erro de integridade")
-                    .message(exception.getMessage())
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.UNPROCESSABLE_ENTITY.value())
+                        .error("Erro de integridade")
+                        .message(exception.getMessage())
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(structureException);
@@ -277,11 +277,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.BAD_REQUEST.value())
-                    .error("Erro na requisição")
-                    .message("O ID informado não corresponde com o formato esperado")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .error("Erro na requisição")
+                        .message("O ID informado não corresponde com o formato esperado")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(structureException);
@@ -294,11 +294,11 @@
 
             AuthStructureException structureException = AuthStructureException
                     .builder()
-                    .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.BAD_REQUEST.value())
-                    .error("Campos inválidos")
-                    .message("Campos informados são inválidos")
-                    .path(request.getServletPath())
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .error("Campos inválidos")
+                        .message("Campos informados são inválidos")
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(structureException);
@@ -311,10 +311,10 @@
             AuthStructureException structureException = AuthStructureException
                     .builder()
                     .moment(Instant.now().atZone(ZoneId.systemDefault()))
-                    .status(HttpStatus.CONFLICT.value())
-                    .error("Imagem já cadastrada")
-                    .message(exception.getMessage())
-                    .path(request.getServletPath())
+                        .status(HttpStatus.CONFLICT.value())
+                        .error("Imagem já cadastrada")
+                        .message(exception.getMessage())
+                        .path(request.getServletPath())
                     .build();
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(structureException);
