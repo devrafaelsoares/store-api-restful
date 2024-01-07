@@ -58,8 +58,10 @@ public class SpringSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/product/**")
                             .hasAnyRole(ADMIN.name(), SELLER.name())
 
+                        .requestMatchers(HttpMethod.GET, "/products/image/**")
+                            .hasRole(ADMIN.name())
                         .anyRequest()
-                            .authenticated()
+                            .permitAll()
 
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
