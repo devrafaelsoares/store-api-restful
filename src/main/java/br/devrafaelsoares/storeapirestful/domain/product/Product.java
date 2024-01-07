@@ -1,6 +1,7 @@
 package br.devrafaelsoares.storeapirestful.domain.product;
 
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
+import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,4 +38,9 @@ public class Product {
     private Category category;
 
     private Double price;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
+
 }
