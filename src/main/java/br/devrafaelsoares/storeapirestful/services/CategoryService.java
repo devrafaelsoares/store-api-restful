@@ -70,7 +70,7 @@ public class CategoryService {
                 .build());
     }
 
-    @CachePut(value = "categories", key = "#id")
+    @CacheEvict(value = "categories", key = "#id", allEntries = true)
     public Category update(
             @NotNull UUID id,
             @NotNull CategoryUpdate categoryUpdateRequest
