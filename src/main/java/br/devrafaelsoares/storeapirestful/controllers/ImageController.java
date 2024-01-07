@@ -1,7 +1,7 @@
 package br.devrafaelsoares.storeapirestful.controllers;
 
-import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
-import br.devrafaelsoares.storeapirestful.domain.file.dto.ImageResponse;
+import br.devrafaelsoares.storeapirestful.domain.image.dto.Image;
+import br.devrafaelsoares.storeapirestful.domain.image.dto.ImageResponse;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
 import br.devrafaelsoares.storeapirestful.services.ImageService;
 import br.devrafaelsoares.storeapirestful.services.ProductService;

@@ -1,9 +1,9 @@
 package br.devrafaelsoares.storeapirestful.services;
 
-import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
+import br.devrafaelsoares.storeapirestful.domain.image.dto.Image;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
-import br.devrafaelsoares.storeapirestful.exceptions.product.ImageExistsException;
 import br.devrafaelsoares.storeapirestful.repositories.ImageRepository;
+import br.devrafaelsoares.storeapirestful.exceptions.product.ImageExistsException;
 import br.devrafaelsoares.storeapirestful.util.File;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

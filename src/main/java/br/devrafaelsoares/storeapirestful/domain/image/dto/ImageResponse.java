@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.domain.file.dto;
+package br.devrafaelsoares.storeapirestful.domain.image.dto;
 
 import java.util.UUID;
 

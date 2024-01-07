@@ -1,6 +1,6 @@
 package br.devrafaelsoares.storeapirestful.repositories;
 
-import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
+import br.devrafaelsoares.storeapirestful.domain.image.dto.Image;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

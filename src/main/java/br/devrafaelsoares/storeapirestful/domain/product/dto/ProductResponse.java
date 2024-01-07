@@ -1,7 +1,7 @@
 package br.devrafaelsoares.storeapirestful.domain.product.dto;
 
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
-import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
+import br.devrafaelsoares.storeapirestful.domain.image.dto.Image;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
 
 import java.io.Serializable;

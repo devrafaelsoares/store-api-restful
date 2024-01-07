@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.domain.file.dto;
+package br.devrafaelsoares.storeapirestful.domain.image.dto;
 
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
