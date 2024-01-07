@@ -2,7 +2,6 @@ package br.devrafaelsoares.storeapirestful.util;
 
 import jakarta.validation.constraints.NotNull;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -13,7 +12,7 @@ import java.nio.file.Path;
 public class File {
 
     public static final String PRODUCTS_IMAGE_PATH = "products/image/";
-    private static final String STATIC_PATH = "/static";
+    private static final String STATIC_PATH = "src/main/resources/static";
 
     private static final char PATH_SEPARATOR = '/';
     public static void upload(
@@ -22,7 +21,7 @@ public class File {
             @NotNull String path
     ) throws IOException {
 
-        Path destinationPath = new ClassPathResource(STATIC_PATH + PATH_SEPARATOR + path).getFile().toPath();
+        Path destinationPath = Path.of(STATIC_PATH + PATH_SEPARATOR + path);
         Path filePath = destinationPath.resolve(newFileName);
         file.transferTo(filePath);
     }
@@ -31,7 +30,7 @@ public class File {
             @NotNull String fileName,
             @NotNull String path
     ) throws IOException {
-        Path destinationPath = new ClassPathResource(STATIC_PATH + PATH_SEPARATOR + path).getFile().toPath();
+        Path destinationPath = Path.of(STATIC_PATH + PATH_SEPARATOR + path);
         Path filePath = destinationPath.resolve(fileName);
         Files.delete(filePath);
     }
