@@ -6,6 +6,7 @@ import br.devrafaelsoares.storeapirestful.domain.product.Product;
 import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductCreateRequest;
 import br.devrafaelsoares.storeapirestful.domain.product.dto.ProductUpdate;
 import br.devrafaelsoares.storeapirestful.repositories.ProductRepository;
+import br.devrafaelsoares.storeapirestful.util.File;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -106,6 +108,19 @@ public class ProductService {
 
     }
 
+    @CacheEvict(value = {"products", "product"}, allEntries = true)
+    public void deleteImage(
+            @NotNull Product product
+    ) throws IOException {
+        if(product.getImage() == null) {
+            throw new EntityNotFoundException("Não existe imagem cadastrada neste produto");
+        }
+
+        File.delete(product.getImage().getFileName(), File.PRODUCTS_IMAGE_PATH);
+        product.setImage(null);
+        productRepository.save(product);
+    }
+
 
     private void updateProductData(
             @NotNull ProductUpdate productUpdateRequest,
@@ -123,4 +138,5 @@ public class ProductService {
         product.setCategory(productUpdateRequest.getCategory() != null ? category : product.getCategory());
         product.setPrice(productUpdateRequest.getPrice() != null ? productUpdateRequest.getPrice() : product.getPrice());
     }
+
 }

@@ -1,6 +1,7 @@
 package br.devrafaelsoares.storeapirestful.domain.product.dto;
 
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
+import br.devrafaelsoares.storeapirestful.domain.file.dto.Image;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
 
 import java.io.Serializable;
@@ -11,9 +12,10 @@ public record ProductResponse(
         String name,
         String description,
         Category category,
-        Double price
+        Double price,
+        Image image
 ) implements Serializable {
     public ProductResponse(Product product) {
-        this(product.getId(), product.getName(), product.getDescription(), product.getCategory(), product.getPrice());
+        this(product.getId(), product.getName(), product.getDescription(), product.getCategory(), product.getPrice(), product.getImage());
     }
 }
