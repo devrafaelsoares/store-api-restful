@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.devrafaelsoares</groupId>
     <artifactId>store-api-restful</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.3</version>
     <name>store-api-restful</name>
     <description>store-api-restful</description>
     <properties>
