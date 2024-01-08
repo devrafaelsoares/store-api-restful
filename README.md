@@ -293,7 +293,7 @@ Na eventualidade de os dados fornecidos serem válidos e não haver registro do 
 [gmail-shield]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
 [gmail-url]: mailto:rafael.soares.developer@gmail.com
 [me-portfolio-shield]: https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white
-[me-portfolio-url]: https://devrafaelsoares.github.io/portfolio/
+[me-portfolio-url]: https://devrafaelsoares.vercel.app
 
 [example-postman-login]: docs/images/example_postman_login.png
 [example-postman-login-response]: docs/images/example_postman_login_response.png
