@@ -2,9 +2,7 @@
 
     import br.devrafaelsoares.storeapirestful.exceptions.auth.UserExistsException;
     import br.devrafaelsoares.storeapirestful.exceptions.auth.UserNotFoundException;
-    import br.devrafaelsoares.storeapirestful.exceptions.product.FieldValidationStructureException;
-    import br.devrafaelsoares.storeapirestful.exceptions.product.ImageExistsException;
-    import br.devrafaelsoares.storeapirestful.exceptions.product.ValidationStructureException;
+    import br.devrafaelsoares.storeapirestful.exceptions.product.*;
     import com.auth0.jwt.exceptions.JWTDecodeException;
     import com.auth0.jwt.exceptions.SignatureVerificationException;
     import com.auth0.jwt.exceptions.TokenExpiredException;
@@ -345,4 +343,38 @@
 
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(validationStructureException);
         }
+        @ExceptionHandler(ProductExistsInCart.class)
+        public ResponseEntity<AuthStructureException> handlerProductExistsInCart(
+                ProductExistsInCart exception, HttpServletRequest request
+        ) {
+
+            AuthStructureException structureException = AuthStructureException
+                    .builder()
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.CONFLICT.value())
+                        .error("Entidade já existe")
+                        .message(exception.getMessage())
+                        .path(request.getServletPath())
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(structureException);
+        }
+        @ExceptionHandler(ProductUnavailableException.class)
+        public ResponseEntity<AuthStructureException> handlerProductUnavailableException(
+                ProductUnavailableException exception, HttpServletRequest request
+        ) {
+
+            AuthStructureException structureException = AuthStructureException
+                    .builder()
+                        .moment(Instant.now().atZone(ZoneId.systemDefault()))
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .error("Produto sem estoque")
+                        .message(exception.getMessage())
+                        .path(request.getServletPath())
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(structureException);
+        }
     }
+
+
