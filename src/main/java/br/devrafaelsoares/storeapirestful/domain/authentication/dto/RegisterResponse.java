@@ -21,6 +21,8 @@ public class RegisterResponse implements Serializable {
 
     private String username;
 
+    private String email;
+
     private Role role;
 
 }
