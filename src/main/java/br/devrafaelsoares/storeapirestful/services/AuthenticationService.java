@@ -4,10 +4,12 @@ import br.devrafaelsoares.storeapirestful.domain.authentication.dto.Authenticati
 import br.devrafaelsoares.storeapirestful.domain.authentication.dto.AuthenticationResponse;
 import br.devrafaelsoares.storeapirestful.domain.authentication.dto.RegisterResponse;
 import br.devrafaelsoares.storeapirestful.domain.authentication.dto.RegisterRequest;
+import br.devrafaelsoares.storeapirestful.domain.cart.Cart;
 import br.devrafaelsoares.storeapirestful.domain.user.Role;
 import br.devrafaelsoares.storeapirestful.domain.user.User;
 import br.devrafaelsoares.storeapirestful.exceptions.auth.UserExistsException;
 import br.devrafaelsoares.storeapirestful.exceptions.auth.UserNotFoundException;
+import br.devrafaelsoares.storeapirestful.repositories.CartRepository;
 import br.devrafaelsoares.storeapirestful.repositories.UserRepository;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class AuthenticationService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
 
     @Autowired
     private JWTService jwtService;
@@ -65,24 +70,31 @@ public class AuthenticationService {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(request.password());
 
+
         if (userRepository.findByUsername(request.username()).isPresent()) {
             throw new UserExistsException("Usuário já cadastrado");
         };
 
         User newUser = User
                 .builder()
+                    .name(request.name())
                     .username(request.username())
+                    .email(request.email())
                     .password(encryptedPassword)
                     .role(Role.valueOf(request.role()))
                 .build();
 
+        Cart cart = Cart.builder().user(newUser).build();
+
         userRepository.save(newUser);
+        cartRepository.save(cart);
 
         return RegisterResponse
                 .builder()
                     .moment(Instant.now().atZone(ZoneId.systemDefault()))
                     .message("Usuário registrado com sucesso")
                     .username(newUser.getUsername())
+                    .email(newUser.getEmail())
                     .role(newUser.getRole())
                 .build();
     }
