@@ -1,11 +1,15 @@
 package br.devrafaelsoares.storeapirestful.domain.product;
 
+import br.devrafaelsoares.storeapirestful.domain.cart.Cart;
+import br.devrafaelsoares.storeapirestful.domain.cart_product.CartProduct;
+import br.devrafaelsoares.storeapirestful.domain.order_item.OrderItem;
 import br.devrafaelsoares.storeapirestful.domain.category.Category;
 import br.devrafaelsoares.storeapirestful.domain.image.dto.Image;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "products")
@@ -39,8 +43,17 @@ public class Product {
 
     private Double price;
 
+    private Double discount;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private Image image;
 
+    @OneToMany(mappedBy = "id.product", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<OrderItem> orderItems = new HashSet<>();
+
+    @OneToMany(mappedBy = "id.product", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<CartProduct> cartProducts = new HashSet<>();
 }
