@@ -5,8 +5,9 @@ spring:
       jwt:
         secret-key: ${JWT_SECRET}
         expiration: ${JWT_EXPIRATION}
-
+      name: ${APPLICATION_SECURITY_NAME}
       username: ${APPLICATION_SECURITY_USER}
+      email: ${APPLICATION_SECURITY_EMAIL}
       password: ${APPLICATION_SECURITY_PASSWORD}
   mvc:
     static-path-pattern: classpath:/static/**
