@@ -34,6 +34,6 @@ public class Image implements Serializable {
     private String path;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "image")
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Product product;
 }

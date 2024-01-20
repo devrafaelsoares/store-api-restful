@@ -45,8 +45,7 @@ public class Product {
 
     private Double discount;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "product", cascade = CascadeType.REMOVE)
     private Image image;
 
     @OneToMany(mappedBy = "id.product", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
