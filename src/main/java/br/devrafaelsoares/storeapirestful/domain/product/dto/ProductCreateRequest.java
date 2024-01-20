@@ -7,12 +7,12 @@ import jakarta.validation.constraints.DecimalMin;
 
 public record ProductCreateRequest(
         @NotBlankOrNull(message = "Campo obrigatório")
-
         String name,
 
         String description,
         @Categories(message = "Categoria inválida ou não existe")
         @NotBlankOrNull(message = "Campo obrigatório")
+
         String category,
         @DecimalMin(value = "0.0", message = "Valor do produto deve ser no mínimo 0.0")
         @DecimalMax(value = "1000000.0", message = "Valor do produto deve ser no máximo 1000000.0")

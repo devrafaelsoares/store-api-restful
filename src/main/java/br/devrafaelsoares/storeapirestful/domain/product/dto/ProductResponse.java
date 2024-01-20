@@ -16,6 +16,13 @@ public record ProductResponse(
         Image image
 ) implements Serializable {
     public ProductResponse(Product product) {
-        this(product.getId(), product.getName(), product.getDescription(), product.getCategory(), product.getPrice(), product.getImage());
+        this(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getCategory(),
+                product.getPrice(),
+                product.getImage()
+        );
     }
 }
