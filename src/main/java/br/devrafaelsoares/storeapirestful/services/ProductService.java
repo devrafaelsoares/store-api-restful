@@ -90,9 +90,13 @@ public class ProductService {
     @CacheEvict(value = "products", key = "#id")
     public void delete(
             @NotNull UUID id
-    ) {
+    ) throws IOException {
 
         Product foundProduct = findById(id);
+
+        if(foundProduct.getImage() != null) {
+            File.delete(foundProduct.getImage().getFileName(), File.PRODUCTS_IMAGE_PATH);
+        }
 
         productRepository.delete(foundProduct);
     }
@@ -117,7 +121,6 @@ public class ProductService {
         }
 
         File.delete(product.getImage().getFileName(), File.PRODUCTS_IMAGE_PATH);
-        product.setImage(null);
         productRepository.save(product);
     }
 

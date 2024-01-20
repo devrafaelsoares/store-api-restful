@@ -10,9 +10,11 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
@@ -70,7 +72,7 @@ public class ProductController {
     @PutMapping("/product/{id}")
     public ResponseEntity<ProductResponse> update(
             @PathVariable @NotNull UUID id,
-            @RequestBody @Valid ProductUpdateRequest productRequest
+            @RequestBody @Validated ProductUpdateRequest productRequest
     ) {
 
         ProductResponse productResponse = new ProductResponse(productService.update(id, productRequest));
@@ -81,7 +83,7 @@ public class ProductController {
     @PatchMapping("/product/{id}")
     public ResponseEntity<ProductResponse> update(
             @PathVariable @NotNull UUID id,
-            @RequestBody @Valid ProductPatchRequest productRequest
+            @RequestBody @Validated ProductPatchRequest productRequest
     ) {
 
         ProductResponse productResponse = new ProductResponse(productService.update(id, productRequest));
@@ -92,7 +94,7 @@ public class ProductController {
     @DeleteMapping("/product/{id}")
     public ResponseEntity<Void> delete(
             @PathVariable @NotNull UUID id
-    ) {
+    ) throws IOException {
 
         productService.delete(id);
 
