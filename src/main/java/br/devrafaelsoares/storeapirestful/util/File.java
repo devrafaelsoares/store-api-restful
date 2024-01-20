@@ -2,10 +2,13 @@ package br.devrafaelsoares.storeapirestful.util;
 
 import jakarta.validation.constraints.NotNull;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -26,6 +29,11 @@ public class File {
         file.transferTo(filePath);
     }
 
+    public static Resource load(String filename, String path) throws MalformedURLException {
+        Path file = Path.of(STATIC_PATH + PATH_SEPARATOR + path).resolve(filename);
+
+        return new UrlResource(file.toUri());
+    }
     public static void delete(
             @NotNull String fileName,
             @NotNull String path

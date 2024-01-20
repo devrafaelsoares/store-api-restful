@@ -6,13 +6,14 @@ import br.devrafaelsoares.storeapirestful.domain.product.Product;
 import br.devrafaelsoares.storeapirestful.services.ImageService;
 import br.devrafaelsoares.storeapirestful.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.UUID;
 
@@ -27,14 +28,18 @@ public class ImageController {
     private ImageService imageService;
 
     @GetMapping("/product/{id}/image")
-    public RedirectView show(
+    public ResponseEntity<byte[]> show(
             @PathVariable UUID id
-    ) {
-        Image image = imageService.findByIdProduct(id);
+    ) throws IOException {
 
-        String domain =  ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
+        Image image = imageService.findByProductId(id);
 
-        return new RedirectView(String.format("%s/%s", domain, image.getPath()));
+        byte[] byteImage = imageService.load(image.getFileName());
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(byteImage);
     }
 
     @PostMapping("/product/{id}/image")
@@ -78,8 +83,8 @@ public class ImageController {
             @PathVariable UUID id
     ) throws IOException {
         Product product = productService.findById(id);
-
-        imageService.delete(product);
+        Image image = imageService.findByProductId(id);
+        imageService.delete(product, image);
 
         return ResponseEntity.noContent().build();
     }
