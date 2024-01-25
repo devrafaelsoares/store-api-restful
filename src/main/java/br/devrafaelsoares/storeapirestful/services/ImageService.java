@@ -2,8 +2,10 @@ package br.devrafaelsoares.storeapirestful.services;
 
 import br.devrafaelsoares.storeapirestful.domain.image.dto.Image;
 import br.devrafaelsoares.storeapirestful.domain.product.Product;
+import br.devrafaelsoares.storeapirestful.exceptions.image.FileNotSentException;
+import br.devrafaelsoares.storeapirestful.exceptions.image.UnsupportedFileException;
 import br.devrafaelsoares.storeapirestful.repositories.ImageRepository;
-import br.devrafaelsoares.storeapirestful.exceptions.product.ImageExistsException;
+import br.devrafaelsoares.storeapirestful.exceptions.image.ImageExistsException;
 import br.devrafaelsoares.storeapirestful.repositories.ProductRepository;
 import br.devrafaelsoares.storeapirestful.util.File;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -46,6 +49,14 @@ public class ImageService {
             @NotNull Product product
     ) throws IOException {
 
+        if(file.isEmpty()) {
+            throw new FileNotSentException("Arquivo especificado não foi enviado");
+        }
+
+        if(isSupportedContentType(file.getContentType())) {
+            throw new UnsupportedFileException(String.format("O formato de arquivo '%s' não é suportado.", file.getContentType()));
+        }
+
         if(product.getImage() != null) {
             throw new ImageExistsException("Produto já possui uma imagem registrada");
         }
@@ -72,6 +83,10 @@ public class ImageService {
             @NotNull MultipartFile file,
             @NotNull Product product
     ) throws IOException {
+
+        if(isSupportedContentType(file.getContentType())) {
+            throw new UnsupportedFileException(String.format("O formato de arquivo '%s' não é suportado.", file.getContentType()));
+        }
 
         Image image = findByProductId(product.getId());
 
@@ -104,5 +119,14 @@ public class ImageService {
         imageRepository.delete(image);
 
         File.delete(product.getImage().getFileName(), File.PRODUCTS_IMAGE_PATH);
+    }
+
+    private boolean isSupportedContentType(String contentType) {
+        final Set<String> supportedContentTypes = Set.of(
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+        );
+        return !supportedContentTypes.contains(contentType);
     }
 }
