@@ -1,4 +1,4 @@
-package br.devrafaelsoares.storeapirestful.exceptions.product;
+package br.devrafaelsoares.storeapirestful.exceptions.image;
 
 public class ImageExistsException extends RuntimeException {
 
