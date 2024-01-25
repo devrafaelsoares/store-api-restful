@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.UUID;
 
@@ -36,16 +35,13 @@ public class ImageController {
 
         byte[] byteImage = imageService.load(image.getFileName());
 
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .body(byteImage);
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(byteImage);
     }
 
     @PostMapping("/product/{id}/image")
     public ResponseEntity<ImageResponse> store(
             @PathVariable UUID id,
-            @RequestParam("file") MultipartFile file
+            @RequestPart("file")  MultipartFile file
     ) throws IOException {
 
         Product product = productService.findById(id);
@@ -69,6 +65,7 @@ public class ImageController {
             @PathVariable UUID id,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
+
         Product product = productService.findById(id);
 
         Image imageSaved = imageService.update(file, product);

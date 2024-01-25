@@ -27,5 +27,4 @@ public class AuthStructureException {
 
     @NotNull
     private String path;
-
 }
