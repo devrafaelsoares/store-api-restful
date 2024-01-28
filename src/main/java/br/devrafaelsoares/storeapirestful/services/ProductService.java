@@ -87,7 +87,7 @@ public class ProductService {
 
     }
 
-    @CacheEvict(value = "products", key = "#id")
+    @CacheEvict(value = {"products", "product"}, allEntries = true)
     public void delete(
             @NotNull UUID id
     ) throws IOException {
